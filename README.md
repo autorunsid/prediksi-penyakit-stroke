@@ -80,14 +80,6 @@ Lalu mengupload token kaggle agar nanti bisa mendownload sebuah dataset dari kag
 file.upload()
 ```
 
-Pertama kita mengimport semua library yang dibutuhkan, 
-``` bash
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-```
-
 Setelah mengupload filenya, maka kita akan lanjut dengan membuat sebuah folder untuk menyimpan file kaggle.json yang sudah diupload tadi,
 ``` bash
 !mkdir -p ~/.kaggle
@@ -105,6 +97,14 @@ Selanjutnya kita harus extract file yang tadi telah didownload,
 ``` bash
 !unzip stroke-prediction-dataset.zip -d stroke
 !ls stroke
+```
+
+Kita mengimport semua library yang dibutuhkan, 
+``` bash
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 ```
 
 Lanjut dengan memasukkan file csv yang telah diextract pada sebuah variable, dan melihat 5 data paling atas dari datasetsnya,
@@ -271,7 +271,7 @@ Dan ternyata kita juga mendapatkan score yang memuaskan.
 
 Saya akan coba lakukan pengetesan menggunakan data dumy seperti dibawah ini
 ``` bash
-test_data = np.array([[1, 2, 0, 1, 0, 2, 0, 2, 4, 1]])
+test_data = np.array([[0, 3, 1, 1, 0, 2, 0, 3, 3, 3]])
 prediction = rfc.predict(test_data)
 if prediction[0] == 0:
   result = "tidak memiliki kemungkinan untuk mengidap Stroke "
@@ -300,12 +300,12 @@ ax.set_xlabel('Predicted labels');ax.set_ylabel('True labels');
 ax.set_title('Confusion Matrix'); 
 ax.xaxis.set_ticklabels(['stroke','not_stroke']); ax.yaxis.set_ticklabels(['stroke','not_stroke']);
 ```
-![](evaluation.png) <br>
+![](./assets/evaluation.png) <br>
 Terlihat jelas bahwa model kita berhasil memprediksi nilai stroke yang sama dengan nilai aktualnya sebanyak 293 data.
 
 ## Deployment
 
-[My Prediction App](https://aplikasi-prediksi-penyakit-stroke.streamlit.app/).
+[My Stroke Prediction App](https://aplikasi-prediksi-penyakit-stroke.streamlit.app/).
 
-![](app.png)
+![](./assets/app.png)
 
