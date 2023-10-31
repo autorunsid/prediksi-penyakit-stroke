@@ -65,7 +65,6 @@ Dataset yang saya gunakan berasal dari Kaggle yang berisi data medis yang releva
 - **stroke**            : Indikator stroke. [Bernilai 1 jika pasien pernah mengalami stroke, dan 0 jika tidak]. [int64]
 
 ## Data Preparation
-Pada tahap ini, saya menggunakan metode EDA untuk melakukan preparasi data.
 ### Data Collection
 Untuk data collection ini, saya mendapatkan dataset dari website kaggle dengan nama dataset [Stroke Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset), jika anda tertarik dengan datasetnya, anda bisa click link tersebut.
 
