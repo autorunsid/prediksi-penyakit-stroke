@@ -65,6 +65,7 @@ Dataset yang saya gunakan berasal dari Kaggle yang berisi data medis yang releva
 - **stroke**            : Indikator stroke. [Bernilai 1 jika pasien pernah mengalami stroke, dan 0 jika tidak]. [int64]
 
 ## Data Preparation
+Pada tahap ini, saya menggunakan metode EDA untuk melakukan preparasi data.
 ### Data Collection
 Untuk data collection ini, saya mendapatkan dataset dari website kaggle dengan nama dataset [Stroke Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset), jika anda tertarik dengan datasetnya, anda bisa click link tersebut.
 
@@ -134,6 +135,20 @@ data.age[(data.age<=60) & (data.age>40)] = 2
 data.age[data.age>60] = 3
 ```
 
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan umur pasien
+```  bash
+data[["age","stroke"]].groupby(["age"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="age",y="stroke")
+plt.xlabel("Age")
+plt.ylabel("diagnosis")
+plt.show()
+```
+![](./assets/umur.png)
+
 Kita cek dataframe age apakah sudah berubah,
 ```  bash
 data.head(5)
@@ -148,10 +163,39 @@ Selanjutnya kita akan mengkategorikan data smoking_status dengan rincian sebagai
 data.smoking_status=[0 if item == "Unknown" else 1 if item=="never smoked" else 2 if item == "formerly smoked" else 3 for item in data.smoking_status]
 ```
 
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan status merokok pasien
+```  bash
+data[["smoking_status","stroke"]].groupby(["smoking_status"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="smoking_status",y="stroke")
+plt.xlabel("smoking_status")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/merokok.png)
+
 Lalu kita akan membuat daftar baru di mana jenis tempat tinggal direpresentasikan dalam bentuk angka: 0 untuk "perkotaan" dan 1 untuk "pedesaan" dalam daftar data asli Residence_type,
 ```  bash
 data.Residence_type=[0 if item == "Urban" else 1 for item in data.Residence_type]
 ```
+
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan jenis tempat tinggal pasien
+```  bash
+data[["Residence_type","stroke"]].groupby(["Residence_type"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="Residence_type",y="stroke")
+plt.xlabel("Residence_type")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/tempat_tinggal.png)
+
 
 Selanjutnya kita akan mengkategorikan data work_type dengan rincian sebagai berikut,
 - 0 Untuk "Belum pernah bekerja"
@@ -163,15 +207,57 @@ Selanjutnya kita akan mengkategorikan data work_type dengan rincian sebagai beri
 data.work_type=[0 if item == "Never_worked" else 1 if item=="children" else 2 if item == "Govt_job" else 3 if item == "Private" else 4 for item in data.work_type]
 ```
 
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan jenis pekerjaan pasien
+```  bash
+data[["work_type","stroke"]].groupby(["work_type"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="work_type",y="stroke")
+plt.xlabel("work_type")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/pekerjaan.png)
+
 Lalu kita akan membuat daftar baru juga di mana jenis jenis kelamin direpresentasikan dalam bentuk angka: 0 untuk "Male/Laki-laki" dan 1 untuk "Female/Perempuan" dalam daftar data asli gender,
 ``` bash
 data.gender=[0 if item == "Male" else 1 for item in data.gender]
 ```
 
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan jenis kelamin pasien
+```  bash
+data[["gender","stroke"]].groupby(["gender"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="gender",y="stroke")
+plt.xlabel("gender")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/jenis_kelamin.png)
+
 Kita ubah untuk data "ever_married" yang akan direpresentasikan dalam bentuk angka: 0 untuk "Ya" dan 1 untuk "Tidak" dalam daftar data asli ever_married,
 ``` bash
 data.ever_married=[0 if item == "Yes" else 1 for item in data.ever_married]
 ```
+
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan status menikah pasien
+```  bash
+data[["ever_married","stroke"]].groupby(["ever_married"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="ever_married",y="stroke")
+plt.xlabel("ever_married")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/merokok.png)
 
 Untuk BMI (Body Mass Index) kita akan kategorikan,
 1. jika data bmi kurang atau sama dengan 23.5 kita beri nilai 0
@@ -182,6 +268,20 @@ Untuk BMI (Body Mass Index) kita akan kategorikan,
 data.bmi=[0 if item <=23.5 else 1 if item>23.5 and item<=28.1 else 2 if item >28.1 and item<=33.1 else 3 for item in data.bmi]
 ```
 
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan body mass index pasien
+```  bash
+data[["bmi","stroke"]].groupby(["bmi"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="bmi",y="stroke")
+plt.xlabel("bmi")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/bmi.png)
+
 Untuk avg_glucose_level (tingkat glukosa rata-rata) kita akan kategorikan,
 1. jika data avg_glucose_level kurang atau sama dengan 77.07 kita beri nilai 0
 2. jika data avg_glucose_level lebih dari 77.07 sampai dengan 91.68 kita beri nilai 1
@@ -190,6 +290,20 @@ Untuk avg_glucose_level (tingkat glukosa rata-rata) kita akan kategorikan,
 ``` bash
 data.avg_glucose_level=[0 if item <=77.07 else 1 if item>77.07 and item<=91.68 else 2 if item >91.68 and item<=113.57 else 3 for item in data.avg_glucose_level]
 ```
+
+Kita melihat berapa persen pasien yang mengidap penyakit stroke berdasarkan tingkat glukosa rata-rata pasien
+```  bash
+data[["avg_glucose_level","stroke"]].groupby(["avg_glucose_level"],as_index=False).mean().sort_values(by="stroke",ascending=False)
+```
+
+Kita lihat juga dengan diagram batang,
+```  bash
+sns.barplot(data,x="avg_glucose_level",y="stroke")
+plt.xlabel("avg_glucose_level")
+plt.ylabel("stroke")
+plt.show()
+```
+![](./assets/glukosa.png)
 
 Kemudian saya akan melihat tipe data yang ada pada masing-masing kolom pada dataset tersebut dengan perintah,
 ``` bash
