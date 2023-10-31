@@ -45,7 +45,7 @@ Bagian laporan ini mencakup:
 - Model yang dihasilkan dari datasets itu menggunakan metode Random Forest Classifier.
 
 ## Data Understanding
-Dataset yang saya gunakan berasal dari Kaggle yang berisi data medis yang relevan. Dataset ini merupakan sekumpulan data riwayat medis pasien. Dataset ini mengandung 5.111 baris dan 10 columns setelah dilakukan data cleaning.<br> 
+Dataset yang saya gunakan berasal dari Kaggle yang berisi data medis yang relevan. Dataset ini merupakan sekumpulan data riwayat medis pasien. Dataset ini mengandung 5.111 baris dan 11 columns setelah dilakukan data cleaning.<br> 
 
 [Stroke Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset).
 
