@@ -404,17 +404,44 @@ pickle.dump(rfc,open(filename,'wb'))
 ## Evaluation
 Matrik evaluasi yang saya gunakan disini adalah confusion matrix, karena ianya sangat cocok untuk kasus pengkategorian seperti kasus ini. Dengan membandingkan nilai aktual dengan nilai prediksi.
 ``` bash
-y_pred = lr.fit(x_train, y_train).predict(x_test)
-cm = confusion_matrix(y_test,y_pred)
+from sklearn.metrics import classification_report, roc_auc_score, accuracy_score, roc_curve, auc
 
-ax= plt.subplot()
-sns.heatmap(cm, annot=True, fmt='g', ax=ax);
-ax.set_xlabel('Predicted labels');ax.set_ylabel('True labels'); 
-ax.set_title('Confusion Matrix'); 
-ax.xaxis.set_ticklabels(['stroke','not_stroke']); ax.yaxis.set_ticklabels(['stroke','not_stroke']);
+#Fitting RandomForest Model
+classifier = RandomForestClassifier(criterion= 'gini', n_estimators= 100, random_state= 0)
+classifier.fit(x_train, y_train)
+y_pred = classifier.predict(x_test)
+y_prob = classifier.predict_proba(x_test)[:,1]
+
+cm = confusion_matrix(y_test, y_pred)
+
+print(classification_report(y_test, y_pred))
+print(f'ROC AUC score: {roc_auc_score(y_test, y_prob)}')
+print('Accuracy Score: ',accuracy_score(y_test, y_pred))
+
+
+# Visualizing Confusion Matrix
+plt.figure(figsize = (8, 5))
+sns.heatmap(cm, cmap = 'Blues', annot = True, fmt = 'd', linewidths = 5, cbar = False, annot_kws = {'fontsize': 15}, 
+            yticklabels = ['No stroke', 'Stroke'], xticklabels = ['Predicted no stroke', 'Predicted stroke'])
+plt.yticks(rotation = 0)
+plt.show()
+# Roc AUC Curve
+false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_prob)
+roc_auc = auc(false_positive_rate, true_positive_rate)
+
+sns.set_theme(style = 'white')
+plt.figure(figsize = (8, 8))
+plt.plot(false_positive_rate,true_positive_rate, color = '#b01717', label = 'AUC = %0.3f' % roc_auc)
+plt.legend(loc = 'lower right')
+plt.plot([0, 1], [0, 1], linestyle = '--', color = '#174ab0')
+plt.axis('tight')
+plt.ylabel('True Positive Rate')
+plt.xlabel('False Positive Rate')
+plt.legend()
+plt.show()
 ```
-![](./assets/evaluation.png) <br>
-Terlihat jelas bahwa model kita berhasil memprediksi nilai stroke yang sama dengan nilai aktualnya sebanyak 293 data.
+![](./assets/evaluation1.png) <br>
+![](./assets/evaluation2.png) <br>
 
 ## Deployment
 
