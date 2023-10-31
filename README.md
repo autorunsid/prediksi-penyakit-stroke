@@ -352,7 +352,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import r2_score,confusion_matrix
 ```
 
-Selanjutnya kita akan menentukan berapa persen dari datasets yang akan digunakan untuk test dan untuk train, disini kita gunakan 30% untuk test dan sisanya untuk training alias 70%,
+Selanjutnya kita akan menentukan berapa persen dari datasets yang akan digunakan untuk test dan untuk train, disini kita gunakan 40% untuk test dan sisanya untuk training alias 60%,
 ``` bash
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.4, random_state=42)
 ```
@@ -368,7 +368,7 @@ rfc = RandomForestClassifier(n_estimators=100,random_state=42)
 rfc.fit(x_train, y_train)
 rfc.score(x_test, y_test)
 ```
-Ternyata mendapatkan score 0.8347107438016529 atau 83%
+Ternyata mendapatkan score 0.9434826883910387 atau 94%
 
 Kemudian kita akan pisahkan data hanya saja kali ini, kita menggunakan seluruh dataset (data) untuk menginisialisasi variabel x (fitur) dan variabel y (target).
 ``` bash
