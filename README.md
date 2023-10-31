@@ -354,7 +354,7 @@ from sklearn.metrics import r2_score,confusion_matrix
 
 Selanjutnya kita akan menentukan berapa persen dari datasets yang akan digunakan untuk test dan untuk train, disini kita gunakan 30% untuk test dan sisanya untuk training alias 70%,
 ``` bash
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3, random_state=42)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.4, random_state=42)
 ```
 
 kita membuat objek model Regresi Logistik (Logistic Regression) dalam library scikit-learn (sklearn) dengan beberapa parameter yang telah diatur.
