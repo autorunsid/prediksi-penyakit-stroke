@@ -440,9 +440,9 @@ plt.xlabel('False Positive Rate')
 plt.legend()
 plt.show()
 ```
-![](./assets/evaluation0.png) <br>
-![](./assets/evaluation1.png) <br>
-![](./assets/evaluation2.png) <br>
+![](./assets/evaluation_0.png) <br>
+![](./assets/evaluation_1.png) <br>
+![](./assets/evaluation_2.png) <br>
 
 ## Deployment
 
