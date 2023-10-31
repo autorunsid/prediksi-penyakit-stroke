@@ -257,7 +257,7 @@ plt.xlabel("ever_married")
 plt.ylabel("stroke")
 plt.show()
 ```
-![](./assets/merokok.png)
+![](./assets/menikah.png)
 
 Untuk BMI (Body Mass Index) kita akan kategorikan,
 1. jika data bmi kurang atau sama dengan 23.5 kita beri nilai 0
